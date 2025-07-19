@@ -44,7 +44,7 @@ function getToday(): string {
 
 const fetchData = async () => {
   try {
-    const res = await api.get('/api/stocks', {
+    const res = await api.get('/stocks', {
       params: {
         dateFrom: getToday(),
         page: page.value,

@@ -45,7 +45,7 @@ const columns = [
 
 const fetchData = async () => {
   try {
-    const res = await api.get('/api/sales', {
+    const res = await api.get('/sales', {
       params: {
         dateFrom: filters.value.dateFrom || '2024-01-01',
         dateTo: filters.value.dateTo || '2024-12-31',
