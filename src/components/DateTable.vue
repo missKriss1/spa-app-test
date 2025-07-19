@@ -25,7 +25,7 @@ interface Column {
   key: string;
 }
 
-const props = defineProps<{
+const { columns, data } = defineProps<{
   columns: Column[];
   data: Record<string, any>[];
 }>();
@@ -33,15 +33,15 @@ const props = defineProps<{
 
 <style scoped>
 .table-container {
-  max-width: 1250px;
-  margin: 0 auto; /* по центру */
-  padding: 0 16px; /* небольшой внутренний отступ слева и справа */
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 16px;
 }
 
 .data-table {
   width: 100%;
   border-collapse: separate;
-  border-spacing: 0 8px; /* Отступы между строками */
+  border-spacing: 0 8px;
   margin-top: 1rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);

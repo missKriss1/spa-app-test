@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="title-page">Incomes</h1>
+    <h1 class="title-page">Доходы</h1>
     <Filters :filters="filters" @updateFilters="updateFilters" />
     <Chart :data="chartData" />
     <DateTable :columns="columns" :data="data" />
@@ -33,14 +33,14 @@ const pageSize = 10;
 const totalCount = ref(0);
 
 const columns = [
-  { label: 'Supplier Article', key: 'supplier_article' },
-  { label: 'Date', key: 'date' },
-  { label: 'Last Change Date', key: 'last_change_date' },
-  { label: 'Tech Size', key: 'tech_size' },
-  { label: 'Barcode', key: 'barcode' },
-  { label: 'Quantity', key: 'quantity' },
-  { label: 'Date Close', key: 'date_close' },
-  { label: 'Warehouse', key: 'warehouse_name' },
+  { label: 'Артикул', key: 'supplier_article' },
+  { label: 'Дата', key: 'date' },
+  { label: 'Дата последнего изменения', key: 'last_change_date' },
+  { label: 'Размер', key: 'tech_size' },
+  { label: 'Бар код', key: 'barcode' },
+  { label: 'Количество', key: 'quantity' },
+  { label: 'Дата закрытия', key: 'date_close' },
+  { label: 'Склад', key: 'warehouse_name' },
 ];
 
 const fetchData = async () => {
@@ -53,11 +53,9 @@ const fetchData = async () => {
         limit: pageSize,
       },
     });
-    // обязательно перезаписываем данные, а не добавляем к старым
     data.value = res.data.data || [];
     totalCount.value = Number(res.data.meta?.total || 0);
     page.value = Number(res.data.meta?.current_page || page.value);
-    console.log('Получено записей:', res.data.data.length);
   } catch (e) {
     console.error('Failed to fetch incomes:', e);
   }
@@ -80,7 +78,7 @@ const chartData = computed(() => ({
   labels: data.value.map(i => i.date),
   datasets: [
     {
-      label: 'Quantity',
+      label: 'Количество',
       data: data.value.map(i => i.quantity),
     },
   ],

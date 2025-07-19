@@ -9,10 +9,10 @@
             @select="navigate"
             class="nav-menu"
         >
-          <el-menu-item index="stocks">Stock</el-menu-item>
-          <el-menu-item index="incomes">Income</el-menu-item>
-          <el-menu-item index="orders">Order</el-menu-item>
-          <el-menu-item index="sales">Sales</el-menu-item>
+          <el-menu-item index="incomes">Доходы</el-menu-item>
+          <el-menu-item index="stocks">Склады</el-menu-item>
+          <el-menu-item index="orders">Заказы</el-menu-item>
+          <el-menu-item index="sales">Продажи</el-menu-item>
         </el-menu>
       </div>
     </div>
@@ -67,7 +67,6 @@ function navigate(key: string) {
   margin-left: 20px;
 }
 
-/* Меню */
 .nav-menu {
   min-width: 800px;
   background-color: transparent !important;

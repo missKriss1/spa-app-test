@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="title-page">Orders</h1>
+    <h1 class="title-page">Заказы</h1>
 
     <Filters :filters="filters" @updateFilters="updateFilters" />
     <Chart :data="chartData" />
@@ -33,13 +33,13 @@ const pageSize = 10;
 const totalCount = ref(0);
 
 const columns = [
-  { label: 'Article', key: 'supplier_article' },
-  { label: 'Price', key: 'total_price' },
-  { label: 'Discount', key: 'discount_percent' },
-  { label: 'Date', key: 'date' },
-  { label: 'Warehouse', key: 'warehouse_name' },
-  { label: 'Region', key: 'oblast' },
-  { label: 'Price', key: 'total_price' },
+  { label: 'Артикул', key: 'supplier_article' },
+  { label: 'Цену', key: 'total_price' },
+  { label: 'Скидка', key: 'discount_percent' },
+  { label: 'Дата', key: 'date' },
+  { label: 'Скалд', key: 'warehouse_name' },
+  { label: 'Регион', key: 'oblast' },
+  { label: 'Итоговая цена', key: 'total_price' },
 ];
 
 const fetchData = async () => {
@@ -78,8 +78,8 @@ const chartData = computed(() => ({
   labels: data.value.map(i => i.date),
   datasets: [
     {
-      label: 'Pay',
-      data: data.value.map(i => i.total_price),
+      label: 'Покупки',
+      data: data.value.map(i => Number(i.total_price)),
     },
   ],
 }));

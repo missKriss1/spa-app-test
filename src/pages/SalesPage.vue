@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h1 class="title-page">Sales</h1>
-
+    <h1 class="title-page">Проджи</h1>
     <Filters :filters="filters" @updateFilters="updateFilters" />
     <Chart :data="chartData" />
     <DateTable :columns="columns" :data="data" />
@@ -33,15 +32,15 @@ const pageSize = 10;
 const totalCount = ref(0);
 
 const columns = [
-  { label: 'Article', key: 'supplier_article' },
-  { label: 'Price', key: 'total_price' },
-  { label: 'Discount', key: 'discount_percent' },
-  { label: 'Date', key: 'date' },
-  { label: 'Country', key: 'country_name' },
-  { label: 'Federal District', key: 'oblast_okrug_name' },
-  { label: 'Region', key: 'region_name' },
-  { label: 'Pay', key: 'for_pay' },
-  { label: 'Finished Pay', key: 'finished_price' },
+  { label: 'Артикул', key: 'supplier_article' },
+  { label: 'Цена', key: 'total_price' },
+  { label: 'Скидка', key: 'discount_percent' },
+  { label: 'Дата', key: 'date' },
+  { label: 'Страна', key: 'country_name' },
+  { label: 'Федеральный округ', key: 'oblast_okrug_name' },
+  { label: 'Регион', key: 'region_name' },
+  { label: 'Опалата', key: 'for_pay' },
+  { label: 'Итоговая цена', key: 'finished_price' },
 ];
 
 const fetchData = async () => {
@@ -59,7 +58,6 @@ const fetchData = async () => {
     totalCount.value = Number(res.data.meta?.total || 0);
     page.value = Number(res.data.meta?.current_page || page.value);
 
-    console.log('Sales loaded:', data.value.length);
   } catch (e) {
     console.error('Failed to fetch sales:', e);
   }
@@ -80,8 +78,8 @@ const chartData = computed(() => ({
   labels: data.value.map(i => i.date),
   datasets: [
     {
-      label: 'Pay',
-      data: data.value.map(i => i.for_pay),
+      label: 'Покупки',
+      data: data.value.map(i => Number(i.finished_price)),
     },
   ],
 }));

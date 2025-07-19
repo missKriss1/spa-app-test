@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="title-page">Stocks</h1>
+    <h1 class="title-page">Склады</h1>
     <Chart :data="chartData" />
     <DateTable :columns="columns" :data="data" />
     <div class="pagination-wrapper">
@@ -29,12 +29,12 @@ const pageSize = 10;
 const totalCount = ref(0);
 
 const columns = [
-  { label: 'Article', key: 'supplier_article' },
-  { label: 'Date', key: 'date' },
-  { label: 'Last Date', key: 'last_change_date' },
-  { label: 'Client', key: 'in_way_from_client' },
-  { label: 'Warehouse', key: 'warehouse_name' },
-  { label: 'Price', key: 'price' },
+  { label: 'Артикул', key: 'supplier_article' },
+  { label: 'Дата', key: 'date' },
+  { label: 'Последняя дата', key: 'last_change_date' },
+  { label: 'Доставка до клиента', key: 'in_way_from_client' },
+  { label: 'Скалд', key: 'warehouse_name' },
+  { label: 'Цена', key: 'price' },
 ];
 
 function getToday(): string {
@@ -55,8 +55,6 @@ const fetchData = async () => {
     data.value = res.data.data || [];
     totalCount.value = Number(res.data.meta?.total || 0);
     page.value = Number(res.data.meta?.current_page || page.value);
-
-    console.log('Stocks loaded:', data.value.length);
   } catch (e) {
     console.error('Failed to fetch stocks:', e);
   }
@@ -72,8 +70,8 @@ const chartData = computed(() => ({
   labels: data.value.map(i => i.date),
   datasets: [
     {
-      label: 'Price',
-      data: data.value.map(i => Number(i.price)),
+      label: 'Доставка',
+      data: data.value.map(i => Number(i.in_way_from_client)),
     },
   ],
 }));
