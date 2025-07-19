@@ -1,18 +1,18 @@
 <template>
   <div>
-    <h1>Stocks</h1>
-
-
+    <h1 class="title-page">Stocks</h1>
     <Chart :data="chartData" />
     <DateTable :columns="columns" :data="data" />
-
-    <el-pagination
-        layout="prev, pager, next"
-        :total="totalCount"
-        :page-size="pageSize"
-        :current-page="page"
-        @current-change="handlePageChange"
-    />
+    <div class="pagination-wrapper">
+      <el-pagination
+          layout="prev, pager, next"
+          :total="totalCount"
+          :page-size="pageSize"
+          :current-page="page"
+          @current-change="handlePageChange"
+          class="custom-pagination"
+      />
+    </div>
   </div>
 </template>
 
@@ -78,3 +78,63 @@ const chartData = computed(() => ({
   ],
 }));
 </script>
+
+<style scoped>
+.title-page{
+  text-align: center;
+}
+.pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.custom-pagination {
+  --pagination-color: #fff;
+  --pagination-bg: #000;
+  --pagination-active-bg: #fff;
+  --pagination-active-color: #000;
+}
+
+.custom-pagination .el-pager li {
+  background-color: var(--pagination-bg);
+  color: var(--pagination-color);
+  border-radius: 4px;
+  margin: 0 4px;
+  min-width: 32px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border: none;
+}
+
+.custom-pagination .el-pager li.active {
+  background-color: var(--pagination-active-bg);
+  color: var(--pagination-active-color);
+  font-weight: 700;
+  cursor: default;
+}
+
+.custom-pagination .el-pager li.btn-next,
+.custom-pagination .el-pager li.btn-prev {
+  background-color: var(--pagination-bg);
+  color: var(--pagination-color);
+  border-radius: 4px;
+  margin: 0 6px;
+  min-width: 40px;
+  font-weight: 600;
+}
+
+.custom-pagination .el-pager li.disabled {
+  color: #555;
+  cursor: not-allowed;
+  background-color: var(--pagination-bg);
+}
+
+.custom-pagination .el-pager li {
+  border: none !important;
+}
+</style>
